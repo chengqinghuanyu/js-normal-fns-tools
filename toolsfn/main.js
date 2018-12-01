@@ -200,87 +200,89 @@ function mobilecheck() {
 /**
  * js控制将字符串逗号分隔转化为数组
  */
-function stringToArray(){//es5
+function stringToArray() { //es5
     return [].splice.call(arguments);
 }
-function stringToArray(){//es6
+
+function stringToArray() { //es6
     return [...arguments];
 }
-function stringToArray(arg){
+
+function stringToArray(arg) {
     return arg.split(',');
     return arg.split('&');
     return arg.split(';');
 }
 
 //将数组转成字符串
-function arrayToString(array){
+function arrayToString(array) {
     return array.join(",");
 }
 
 //电话号码验证
- function checkTel(id) {
-      var obj = document.getElementById(id);
-      var value = obj.value;
-      var regTel1 = /^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/.test(value);//带区号的固定电话
-      var regTel2 = /^(\d{7,8})(-(\d{3,}))?$/.test(value);//不带区号的固定电话
-      var regTel3 = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1})|(19[0-9]{1}))+\d{8})$/.test(value);//手机电话
-      if(value != ""){
+function checkTel(id) {
+    var obj = document.getElementById(id);
+    var value = obj.value;
+    var regTel1 = /^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/.test(value); //带区号的固定电话
+    var regTel2 = /^(\d{7,8})(-(\d{3,}))?$/.test(value); //不带区号的固定电话
+    var regTel3 = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1})|(19[0-9]{1}))+\d{8})$/.test(value); //手机电话
+    if (value != "") {
         if (!regTel1 && !regTel2 && !regTel3) {
-          alert("电话号码输入有误！");
-          obj.focus();
-          return false;
+            alert("电话号码输入有误！");
+            obj.focus();
+            return false;
         }
-      }else {
+    } else {
         alert("请输入电话号码！");
         return false;
-      }
-      alert("电话号码输入正确！");
-      return true;
     }
+    alert("电话号码输入正确！");
+    return true;
+}
 //验证邮箱
-function isEmail(str){
+function isEmail(str) {
     var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/;
     return reg.test(str);
 }
 //验证身份证号码
-function isCP(str){
+function isCP(str) {
     //身份证号（18位）正则
     var cP = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
     return cP.test(str);
 }
 
 //验证中文
-function isZH(str){
+function isZH(str) {
     var re1 = new RegExp("^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9])*$");
     return rel.test(str);
 }
 
 // 验证url
-function isURL(str){
-//URL正则
-var urlP= /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+function isURL(str) {
+    //URL正则
+    var urlP = /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
     return urlP.test(str)
 }
 
 //密码强度验证
-function isPassword(str){
+function isPassword(str) {
     //密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符
-    if(str.lengt<6){
+    if (str.lengt < 6) {
         return '密码长度小于6位'
     }
     var pPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/;
     return pPattern.test(str);
 }
 //pv4验证
-function ipV4(str){
+function ipV4(str) {
     //ipv4地址正则
-var ipP = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-//输出 true
-   return  ip.test(str);
+    var ipP = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+    //输出 true
+    return ip.test(str);
 }
 
 //16进制颜色
-function (str){
+function x0(str) {
     var cPattern = /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
     //输出 true
     return cPattern.test(str);
@@ -288,57 +290,57 @@ function (str){
 
 
 //小数点取出两位
-function numToFixedTwo(num){
-//toFixed();
-    if(isNaN(num)){
+function numToFixedTwo(num) {
+    //toFixed();
+    if (isNaN(num)) {
         num = 0;
     }
-    if(typeof(num) === "string"){
+    if (typeof(num) === "string") {
         num = parseFloat(num);
     }
-      let mg = num,
-          n = mg.toString();
-      if(n.indexOf(".") > 0){
-          g = n.split("."),
-          p = g[0],
-          k = g[1].substring(0,2),
-          val = p+"."+k;
-          n = parseFloat(val);
-      }else{
+    let mg = num,
+        n = mg.toString();
+    if (n.indexOf(".") > 0) {
+        g = n.split("."),
+            p = g[0],
+            k = g[1].substring(0, 2),
+            val = p + "." + k;
+        n = parseFloat(val);
+    } else {
         n = Number(n);
-      }
-      console.log(n);
-      return n;
-  }
-  numToFixedTwo("-10000.9a");
+    }
+    console.log(n);
+    return n;
+}
+numToFixedTwo("-10000.9a");
 
 
 //手机端返回=====================
 {
-    window.onload = function(){
+    window.onload = function() {
+        pushHistory();
+        var bool = false;
+        setTimeout(function() {
+            bool = true;
+        }, 1500);
+        window.addEventListener("popstate", function(e) {
+            if (bool) {
+                //alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能
+                //window.history.go(-1);
+                //window.history.back();
+                window.history.go(-1);
+            }
             pushHistory();
-            var bool=false;
-            setTimeout(function(){
-                bool=true;
-            },1500);
-            window.addEventListener("popstate", function(e) {
-              if(bool){
-                    //alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能
-                    //window.history.go(-1);
-                    //window.history.back();
-                    window.history.go(-1);
-                }
-                pushHistory();
 
         }, false);
 
         function pushHistory() {
-               var state = {
-                   title: "title",
-                   url: window.location.href
-               };
-           window.history.pushState(state, "title", "#");
-       }
+            var state = {
+                title: "title",
+                url: window.location.href
+            };
+            window.history.pushState(state, "title", "#");
+        }
     }
 
 }
@@ -349,14 +351,14 @@ function numToFixedTwo(num){
 /*设置
 <input type="text" name="je" onkeyup="clearNoNum(this)" />元
 */
-function clearNoNum(obj){
-  obj.value = obj.value.replace(/[^\d.]/g,"");  //清除“数字”和“.”以外的字符
-  obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个. 清除多余的
-  obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
-  obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');//只能输入两个小数
-  if(obj.value.indexOf(".")< 0 && obj.value !=""){//以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额
-   obj.value= parseFloat(obj.value);
-  }
+function clearNoNum(obj) {
+    obj.value = obj.value.replace(/[^\d.]/g, ""); //清除“数字”和“.”以外的字符
+    obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的
+    obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+    obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'); //只能输入两个小数
+    if (obj.value.indexOf(".") < 0 && obj.value != "") { //以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额
+        obj.value = parseFloat(obj.value);
+    }
 }
 
 
@@ -365,96 +367,88 @@ var CMX = CMX || {};
 /**
  ** 加
  **/
-CMX.add = function (arg1, arg2) {
-  var r1, r2, m, c;
-  try {
-    r1 = arg1.toString().split(".")[1].length;
-  }
-  catch (e) {
-    r1 = 0;
-  }
-  try {
-    r2 = arg2.toString().split(".")[1].length;
-  }
-  catch (e) {
-    r2 = 0;
-  }
-  c = Math.abs(r1 - r2);
-  m = Math.pow(10, Math.max(r1, r2));
-  if (c > 0) {
-    var cm = Math.pow(10, c);
-    if (r1 > r2) {
-      arg1 = Number(arg1.toString().replace(".", ""));
-      arg2 = Number(arg2.toString().replace(".", "")) * cm;
-    } else {
-      arg1 = Number(arg1.toString().replace(".", "")) * cm;
-      arg2 = Number(arg2.toString().replace(".", ""));
+CMX.add = function(arg1, arg2) {
+    var r1, r2, m, c;
+    try {
+        r1 = arg1.toString().split(".")[1].length;
+    } catch (e) {
+        r1 = 0;
     }
-  } else {
-    arg1 = Number(arg1.toString().replace(".", ""));
-    arg2 = Number(arg2.toString().replace(".", ""));
-  }
-  return (arg1 + arg2) / m;
+    try {
+        r2 = arg2.toString().split(".")[1].length;
+    } catch (e) {
+        r2 = 0;
+    }
+    c = Math.abs(r1 - r2);
+    m = Math.pow(10, Math.max(r1, r2));
+    if (c > 0) {
+        var cm = Math.pow(10, c);
+        if (r1 > r2) {
+            arg1 = Number(arg1.toString().replace(".", ""));
+            arg2 = Number(arg2.toString().replace(".", "")) * cm;
+        } else {
+            arg1 = Number(arg1.toString().replace(".", "")) * cm;
+            arg2 = Number(arg2.toString().replace(".", ""));
+        }
+    } else {
+        arg1 = Number(arg1.toString().replace(".", ""));
+        arg2 = Number(arg2.toString().replace(".", ""));
+    }
+    return (arg1 + arg2) / m;
 };
 
 /**
  ** 减
  **/
-CMX.sub = function (arg1, arg2) {
-  var r1, r2, m, n;
-  try {
-    r1 = arg1.toString().split(".")[1].length;
-  }
-  catch (e) {
-    r1 = 0;
-  }
-  try {
-    r2 = arg2.toString().split(".")[1].length;
-  }
-  catch (e) {
-    r2 = 0;
-  }
-  m = Math.pow(10, Math.max(r1, r2)); //last modify by deeka //动态控制精度长度
-  n = (r1 >= r2) ? r1 : r2;
-  return Number(((arg1 * m - arg2 * m) / m).toFixed(n));
+CMX.sub = function(arg1, arg2) {
+    var r1, r2, m, n;
+    try {
+        r1 = arg1.toString().split(".")[1].length;
+    } catch (e) {
+        r1 = 0;
+    }
+    try {
+        r2 = arg2.toString().split(".")[1].length;
+    } catch (e) {
+        r2 = 0;
+    }
+    m = Math.pow(10, Math.max(r1, r2)); //last modify by deeka //动态控制精度长度
+    n = (r1 >= r2) ? r1 : r2;
+    return Number(((arg1 * m - arg2 * m) / m).toFixed(n));
 };
 
 /**
  ** 乘
  **/
-CMX.mul = function (arg1, arg2) {
-  var m = 0, s1 = arg1.toString(), s2 = arg2.toString();
-  try {
-    m += s1.split(".")[1].length;
-  }
-  catch (e) {
-  }
-  try {
-    m += s2.split(".")[1].length;
-  }
-  catch (e) {
-  }
-  return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
+CMX.mul = function(arg1, arg2) {
+    var m = 0,
+        s1 = arg1.toString(),
+        s2 = arg2.toString();
+    try {
+        m += s1.split(".")[1].length;
+    } catch (e) {}
+    try {
+        m += s2.split(".")[1].length;
+    } catch (e) {}
+    return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
 };
 
 /**
  ** 除
  **/
-CMX.div = function (arg1, arg2) {
-  var t1 = 0, t2 = 0, r1, r2;
-  try {
-    t1 = arg1.toString().split(".")[1].length;
-  }
-  catch (e) {
-  }
-  try {
-    t2 = arg2.toString().split(".")[1].length;
-  }
-  catch (e) {
-  }
-  with (Math) {
-    r1 = Number(arg1.toString().replace(".", ""));
-    r2 = Number(arg2.toString().replace(".", ""));
-    return (r1 / r2) * pow(10, t2 - t1);
-  }
+CMX.div = function(arg1, arg2) {
+    var t1 = 0,
+        t2 = 0,
+        r1, r2;
+    try {
+        t1 = arg1.toString().split(".")[1].length;
+    } catch (e) {}
+    try {
+        t2 = arg2.toString().split(".")[1].length;
+    } catch (e) {}
+    with(Math) {
+        r1 = Number(arg1.toString().replace(".", ""));
+        r2 = Number(arg2.toString().replace(".", ""));
+        return (r1 / r2) * pow(10, t2 - t1);
+    }
 };
